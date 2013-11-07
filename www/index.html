@@ -1,103 +1,45 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                  "http://www.w3.org/TR/html4/strict.dtd">
-    <html>
-      <head>
-        <title>Media Example</title>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
 
-        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-        <script type="text/javascript" charset="utf-8">
-
-        // Wait for Cordova to load
-        //
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        // Cordova is ready
-        //
-        function onDeviceReady() {
-          console.log("ready");
-          playAudio("test.mp3");
-        }
-
-        // Audio player
-        //
-        var my_media = null;
-        var mediaTimer = null;
-
-        // Play audio
-        //
-        function playAudio(src) {
-            // Create Media object from src
-          console.log("get into the function");  
-          my_media = new Media(src, onSuccess, onError);
-          console.log("ready to go!");
-            // Play audio
-            my_media.play();
-
-            // Update my_media position every second
-            if (mediaTimer == null) {
-                mediaTimer = setInterval(function() {
-                    // get my_media position
-                    my_media.getCurrentPosition(
-                        // success callback
-                        function(position) {
-                            if (position > -1) {
-                                setAudioPosition((position) + " sec");
-                            }
-                        },
-                        // error callback
-                        function(e) {
-                            console.log("Error getting pos=" + e);
-                            setAudioPosition("Error: " + e);
-                        }
-                    );
-                }, 1000);
-            }
-        }
-
-        // Pause audio
-        // 
-        function pauseAudio() {
-            if (my_media) {
-                my_media.pause();
-            }
-        }
-
-        // Stop audio
-        // 
-        function stopAudio() {
-            if (my_media) {
-                my_media.stop();
-            }
-            clearInterval(mediaTimer);
-            mediaTimer = null;
-        }
-
-        // onSuccess Callback
-        //
-        function onSuccess() {
-            console.log("playAudio():Audio Success");
-        }
-
-        // onError Callback 
-        //
-        function onError(error) {
-            alert('code: '    + error.code    + '\n' + 
-                  'message: ' + error.message + '\n');
-        }
-
-        // Set audio position
-        // 
-        function setAudioPosition(position) {
-            document.getElementById('audio_position').innerHTML = position;
-        }
-
-        </script>
-      </head>
-      <body>
-        version 1.1
-        <a href="#" class="btn large" onclick="playAudio('test.mp3');">Play Audio</a>
-        <a href="#" class="btn large" onclick="pauseAudio();">Pause Playing Audio</a>
-        <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
-        <p id="audio_position"></p>
-      </body>
-    </html>
+<body>
+<table width="493" height="206" border="0" align="center">
+  <tr>
+    <td height="86" colspan="5" bgcolor="#FBD8C9" style="text-align: center"><p>Avenue Dhh</p>
+    <p>Real Time Reading </p></td>
+  </tr>
+  <tr>
+    <td width="14%" height="33" bgcolor="#A3D4FA">&nbsp;</td>
+    <td width="20%" bgcolor="#A3D4FA" style="text-align: right">User Name</td>
+    <td height="33" colspan="2" bgcolor="#A3D4FA" style="text-align: left">
+      <input type="text" name="textfield" id="textfield">
+      <span style="text-align: left"></span> <span style="text-align: left"></span></td>
+    <td width="15%" height="33" bgcolor="#A3D4FA">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#A3D4FA">&nbsp;</td>
+    <td height="30" bgcolor="#A3D4FA" style="text-align: right">Password</td>
+    <td height="30" colspan="2" bgcolor="#A3D4FA" style="text-align: left">
+      <span style="text-align: left"></span>
+      <input type="text" name="textfield2" id="textfield2">
+    </td>
+    <td height="30" bgcolor="#A3D4FA">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="47" bgcolor="#FBD8C9">&nbsp;</td>
+    <td colspan="2" bgcolor="#FBD8C9"><span style="text-align: center">
+      <input type="button" name="Sign in2" id="Sign in2" value="Sign in (Student)"  onClick="javascript:window.location='Read.html'" >
+    </span></td>
+    <td width="28%" bgcolor="#FBD8C9"><span style="text-align: center">
+      <input type="button" name="Sign in" id="Sign in" value="Sign in (Teacher)" >
+    </span></td>
+    <td bgcolor="#FBD8C9">&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
