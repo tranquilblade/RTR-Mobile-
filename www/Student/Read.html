@@ -211,7 +211,7 @@ function toggleMainContainer() {
   }
   
 
-  
+  /*
   function systemCheck(){
     if (navigator.getUserMedia) {
       navigator.getUserMedia({audio: true}, onSuccess, onFail);
@@ -221,12 +221,13 @@ function toggleMainContainer() {
       //toggleMainContainer();
       $('#systemCheckModal').modal('show');
     }    
-  }
+  }*/
 
 
   function startRecording() {
     //alert("recordAudio()"); 
-    //console.log(" -- media="+mediaRec); 
+    //console.log(" -- media="+mediaRec);
+    alert(mediaRec);
     if (mediaRec == null) {
         //alert("start ini");
 	alert(directory.fullPath+"/"+src);
