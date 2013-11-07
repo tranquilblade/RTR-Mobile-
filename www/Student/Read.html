@@ -15,9 +15,6 @@
 <link rel="stylesheet" type="text/css" href="../css/notebook.css">
 <link rel="stylesheet" type="text/css" href="../css/myButton.css">  
   
-<?php
-  include("../includes/db.php");
-?>
 
 </head>
 
@@ -139,26 +136,7 @@ function toggleMainContainer() {
   <tr>
     <td colspan="6">
     <div id="instructions" class="paper">
-        <?php
-    $query = sprintf("SELECT * FROM tRTR_Starters order by Rand() limit 1");
-
-    // Perform Query
-    $result = mysql_query($query); 
-    
-    if (!$result) {
-    $message  = 'Invalid query: ' . mysql_error() . "\n";
-    $message .= 'Whole query: ' . $query;
-    die($message);
-    }
-
-    $row = mysql_fetch_assoc($result);
-    $title = $row['title'];
-    $content = nl2br($row['storyStarter']);      
-    mysql_free_result($result);
-    echo("<span style='text-align:center'>".$title . "</span> <br> <br>");
-    //print_r($row);
-    echo($content);
-?>
+       Test
     </div>
     </td>
   </tr>
