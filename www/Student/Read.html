@@ -176,8 +176,8 @@ function toggleMainContainer() {
 
 
   function startRecording() {
-    console.log("recordAudio()"); 
-    console.log(" -- media="+mediaRec); 
+    alert("recordAudio()"); 
+    //console.log(" -- media="+mediaRec); 
     if (mediaRec == null) { 
 	var src = "myrecording.mp3"; 
 	mediaRec = new Media(src, 
@@ -195,9 +195,9 @@ function toggleMainContainer() {
 		); 
     } 
     
-    navigator.notification.beep(1); 
+    //navigator.notification.beep(1); 
     mediaRec.startRecord(); 
-    //alert("Start Record ");
+    alert("Start Record ");
     //recorder.record();
     
   }
