@@ -192,7 +192,8 @@ function toggleMainContainer() {
 				setAudioStatus("Error: " + err); 
 			}, 
 			function(status) { 
-				console.log("recordAudio():Audio Status: "+status); 
+				alert("recordAudio():Audio Status: "+status);
+				//console.log("recordAudio():Audio Status: "+status); 
 				setAudioStatus(Media.MEDIA_MSG[status]); 
 			} 
 		); 
