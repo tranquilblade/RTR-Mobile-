@@ -230,8 +230,8 @@ function toggleMainContainer() {
     //alert(mediaRec);
     if (mediaRec == null) {
         //alert("start ini");
-	console.log(directory.fullPath+"/"+src);
-	mediaRec = new Media(directory.fullPath+"/"+src,
+	console.log(src);
+	mediaRec = new Media(src,
 			function() {
 			        //alert("success");
 				console.log("recordAudio():Audio Success"); 
