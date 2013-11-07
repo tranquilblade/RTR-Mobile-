@@ -183,11 +183,11 @@ function toggleMainContainer() {
 	var src = "myrecording.mp3"; 
 	mediaRec = new Media(src, 
 			function() {
-			        alert("success");
+			        //alert("success");
 				//console.log("recordAudio():Audio Success"); 
 			}, 
 			function(err) {
-			        alert("failed");
+			        //alert("failed");
 				//console.log("recordAudio():Audio Error: "+err); 
 				setAudioStatus("Error: " + err); 
 			}, 
