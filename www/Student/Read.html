@@ -228,14 +228,14 @@ function toggleMainContainer() {
     //alert("recordAudio()"); 
     //console.log(" -- media="+mediaRec); 
     if (mediaRec == null) {
-        //alert("start ini");
+        alert("start ini");
 	mediaRec = new Media(directory.fullPath+"/"+src,
 			function() {
-			        //alert("success");
+			        alert("success");
 				//console.log("recordAudio():Audio Success"); 
 			}, 
 			function(err) {
-			        //alert("failed");
+			        alert("failed");
 				//console.log("recordAudio():Audio Error: "+err); 
 				setAudioStatus("Error: " + err); 
 			}, 
