@@ -157,27 +157,9 @@ function toggleMainContainer() {
     <input type="button" name="submitButton" id="submitButton" value="Submit" onclick="javascript:submit()">-->    
     </div>
     <script language="javascript">
-  var onFail = function(e) {
-    $('#systemCheckModal').modal('show');
-    console.log('Rejected!', e);
-  };
 
-  var onSuccess = function(s) {
-	  var context = new webkitAudioContext();
-	  var mediaStreamSource = context.createMediaStreamSource(s);
-	  recorder = new Recorder(mediaStreamSource);
-	  $('#allowHint').modal('hide');
-	  toggleMainContainer();
-
-	  // audio loopback
-	  // mediaStreamSource.connect(context.destination);
-  }
-
-  window.URL = window.URL || window.webkitURL;
-  navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-  var recorder;
-  var audio = document.querySelector('audio');
+  
+  var mediaRec = null; 
   
   var intervalId=0;
   
@@ -194,18 +176,44 @@ function toggleMainContainer() {
 
 
   function startRecording() {
+    console.log("recordAudio()"); 
+    console.log(" -- media="+mediaRec); 
+    if (mediaRec == null) { 
+	var src = "myrecording.mp3"; 
+	mediaRec = new Media(src, 
+			function() { 
+				console.log("recordAudio():Audio Success"); 
+			}, 
+			function(err) { 
+				console.log("recordAudio():Audio Error: "+err); 
+				setAudioStatus("Error: " + err); 
+			}, 
+			function(status) { 
+				console.log("recordAudio():Audio Status: "+status); 
+				setAudioStatus(Media.MEDIA_MSG[status]); 
+			} 
+		); 
+    } 
+    
+    navigator.notification.beep(1); 
+    mediaRec.startRecord(); 
     //alert("Start Record ");
     //recorder.record();
+    
   }
 
   function stopRecording() {
-          alert("stop");
-	  /*recorder.stop();
-	  recorder.exportWAV(function(s) {
-	          //console.log(s);
-		  audio.src = window.URL.createObjectURL(s);
-		  audio.pause();
-	  });*/
+    mediaRec.stopRecord(); 
+    console.log("recordAudio(): stop"); 
+    //navigator.notification.beep(1);       
+    mediaRec.play();
+    //alert("stop");
+    /*recorder.stop();
+    recorder.exportWAV(function(s) {
+	    //console.log(s);
+	    audio.src = window.URL.createObjectURL(s);
+	    audio.pause();
+    });*/
   }
 
     function sendAudio(){
