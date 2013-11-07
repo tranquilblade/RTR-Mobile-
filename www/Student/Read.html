@@ -179,14 +179,16 @@ function toggleMainContainer() {
     //alert("recordAudio()"); 
     //console.log(" -- media="+mediaRec); 
     if (mediaRec == null) {
-        alert("start ini");
+        //alert("start ini");
 	var src = "myrecording.mp3"; 
 	mediaRec = new Media(src, 
-			function() { 
-				console.log("recordAudio():Audio Success"); 
+			function() {
+			        alert("start ini");
+				//console.log("recordAudio():Audio Success"); 
 			}, 
-			function(err) { 
-				console.log("recordAudio():Audio Error: "+err); 
+			function(err) {
+			        alert("failed");
+				//console.log("recordAudio():Audio Error: "+err); 
 				setAudioStatus("Error: " + err); 
 			}, 
 			function(status) { 
