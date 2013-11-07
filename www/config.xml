@@ -6,10 +6,10 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.0">
 
-    <name>Avenue Html5</name>
+    <name>Avenue Real Tiem Reading</name>
 
     <description>
-        This is the html5 version platform for AvenueDhh (Audio-Visual Educational Environment for Deaf or Hard of Hearing) Project.
+        This is the student-side Real Time Reading module for AvenueDhh (Audio-Visual Educational Environment for Deaf or Hard of Hearing) Project.
     </description>
 
     <author href="http://psu.edu" email="StudioDesign@psu.edu">

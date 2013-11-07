@@ -1,352 +1,100 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-<script src="js/jquery-1.7.1.min.js"></script>
-<script src="js/jquery-latest.js"></script>
-<script src="js/jquery.cycle.all.latest.js" type="text/javascript"></script>
-<script src="js/bootstrap-modal.js"></script>
-<script src="js/bootstrap-transition.js"></script>
-<script src="js/bootstrap-alert.js"></script>
-<script type="text/javascript" src="recorder.js"></script>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+                  "http://www.w3.org/TR/html4/strict.dtd">
+    <html>
+      <head>
+        <title>Media Example</title>
 
-<link rel="stylesheet" type="text/css" href="css/studentRead.css">
-<link rel="stylesheet" type="text/css" href="css/notebook.css">
-<link rel="stylesheet" type="text/css" href="css/myButton.css">  
-  
+        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+        <script type="text/javascript" charset="utf-8">
 
-</head>
+        // Wait for Cordova to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
 
-<body>
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+            playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3");
+        }
 
-<div id="submitConfirm" class="modal"  data-keyboard="false" data-backdrop="static" > 
+        // Audio player
+        //
+        var my_media = null;
+        var mediaTimer = null;
 
-  <div class="modal-header">
-    <h3>Congratulations!</h3>
-  </div>
-  <div class="modal-body">
-    The recording has been sent to your teacher!
-  </div>
-  <div class="modal-footer">
-    <input name="button4"
-	id="button5"
-	value="OK"
-	onclick="javascript:window.location='index.html';"
-	type="button">
-  </div>
-</div>
+        // Play audio
+        //
+        function playAudio(src) {
+            // Create Media object from src
+            my_media = new Media(src, onSuccess, onError);
 
-<div id="allowHint" class="modal" data-keyboard="false" data-backdrop="static" > 
+            // Play audio
+            my_media.play();
 
-  <div class="modal-header">
-    <h3>Microphone Set</h3>
-  </div>
-  <div class="modal-body">
-    Please allow our system to use your microphone. <br>
-    See the top-right corner of this page. <br>
-    Then click the "Allow" button.
-  </div>
-  <div class="modal-footer">
-  </div>
-</div>
+            // Update my_media position every second
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    // get my_media position
+                    my_media.getCurrentPosition(
+                        // success callback
+                        function(position) {
+                            if (position > -1) {
+                                setAudioPosition((position) + " sec");
+                            }
+                        },
+                        // error callback
+                        function(e) {
+                            console.log("Error getting pos=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+        }
 
-<div id="systemCheckModal" class="modal"  data-keyboard="false" data-backdrop="static" > 
+        // Pause audio
+        // 
+        function pauseAudio() {
+            if (my_media) {
+                my_media.pause();
+            }
+        }
 
-  <div class="modal-header">
-    <h3>Checking your system:</h3>
-  </div>
-  <div class="modal-body">
-    <img src="images/systemCheck.png">
-  </div>
-  <div class="modal-footer">
-    <input name="button4"
-	id="button5"
-	value="OK"
-	onClick="javascript:window.location='../index.html'"
-	type="button">
-  </div>
-</div>
-  
-<div id="confirmModal" class="modal"  data-keyboard="false" data-backdrop="static" > 
+        // Stop audio
+        // 
+        function stopAudio() {
+            if (my_media) {
+                my_media.stop();
+            }
+            clearInterval(mediaTimer);
+            mediaTimer = null;
+        }
 
-  <div class="modal-header">
-    <h3>Select recoded audio:</h3>
-  </div>
-  <div class="modal-body">
-<table align="center" border="0" width="72%">
-      <tbody>
-        <tr>
-          <td style="text-align: center; width: 212.45px;" 
-            height="34"><input
-              checked="checked"
-              value="Record 1"
-              name="Record"
-              type="radio">#
-            1: <input name="button" id="button" value="Play" type="button"></td>
-          <td style="text-align: center; width: 240.517px;" colspan="1" ><input
-              value="Record 2"
-              name="Record"
-              type="radio">#
-            2: <input name="button" id="button" value="Play" type="button"> </td>
-          <td style="text-align: center; width: 206.567px;" colspan="1" ><input
-              value="Record 3"
-              name="Record"
-              type="radio">#
-            3: <input name="button" id="button" value="Play" type="button"> </td>
-        </tr>
-      </tbody>
-    </table>
-  
-  </div>
-  <div class="modal-footer">
-	  <input name="button2"
-              id="button2"
-              value="Submit"
-              onclick="javascript:alert('The sound recording you selected  has been sent to your teacher!');window.location='../index.html'"
-              type="button">
-          <input name="button3"
-              id="button3"
-              value="Try Again"
-              onclick="javascript:$('#confirmModal').modal('hide');"
-              type="button">
-  </div>
-  
-</div>
- 
- <script language="javascript"> 
-function toggleMainContainer() {
-	var ele = document.getElementById("main-container");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-  	}
-	else {
-		ele.style.display = "block";
-	}
-} 
-</script> 
-  
-<div id="main-container">
-<table width="72%" border="0" align="center">
-  <tr>
-    <td width="20%"  style="text-align: center"><a class="myButton" href="Guidance.php">Help</a></td>
-    <td width="60%" colspan="4" style="text-align: center">Read &amp; Record</td>
-    <td width="20%"  style="text-align: center"><a class="myButton" href="../index.html">Log out</a></td>
-  </tr>
-  <tr>
-    <td colspan="6">
-    <div id="instructions" class="paper">
-       BEING A STAR ATHLETE <br>
-       My dad was a junior high school physical education teacher. It should come as no surprise that I grew up thinking that playing sports was just about the most important thing anyone could do. I was lucky that I grew up in a neighborhood with a lot of boys who were similar in age to me. We could almost always get together enough guys to play a game of whatever sport was in season. In the fall, we played football. In winter, most of us played basketball, although, some of the guys liked to play hockey. In the spring, it was softball. 
-       <br>
-       Sometimes, on weekends, my dad would be working in the woodshop at school and he would let my brother and me into the gym to play basketball. I would spend two or three hours shooting baskets and really learned to love the game. When I got into junior high school my homeroom won the intramural basketball championships for three years in a row. I thought I was going to be a sport star when I got to high school. I did manage a fairly successful basketball career, but now that I think about it I'm sure I was too focused on athletics.
-    </div>
-    </td>
-  </tr>
-    <tr>
-    <td id="functionCell" width="40%" height="40" colspan="6" style="text-align: center">
-    <div id="recordDiv" align="center">
-      <a id="recordButton" class="myButton" href="javascript:toggleRecordButton()">Record</a>
-      <!--<input type="button" name="recordButton" id="recordButton" value="Record"  onclick="javascript:toggleRecordButton()">-->
-    </div>
-    <div id="submitDiv" style="display: none">  
-    <audio controls autoplay ></audio>
-    <a id="cancelButton" class="myButton" href="javascript:tryaginButton()">Try Again</a>
-    <a id="submitButton" class="myButton" href="javascript:submit()">Submit</a>
-    <!--<input type="button" name="cancelButton" id="cancelButton" value="Try Again" onclick="javascript:tryaginButton()">
-    <input type="button" name="submitButton" id="submitButton" value="Submit" onclick="javascript:submit()">-->    
-    </div>
-    <script language="javascript">
+        // onSuccess Callback
+        //
+        function onSuccess() {
+            console.log("playAudio():Audio Success");
+        }
 
-  
-  var mediaRec = null;
-  var intervalId=0;
-  var src = "recording.wav"; // name of auio file
-  var directory; // holds a reference for directory reading
-  // Wait for PhoneGap to load
-  document.addEventListener("deviceready", onDeviceReady, false);
-   
-  // PhoneGap is ready
-  function onDeviceReady() {
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSytemSuccess, null);       	
-  }
-  
-  function onFileSytemSuccess(fileSystem) {
-  // Get the data directory, creating it if it doesn't exist.
-  fileSystem.root.getDirectory("",{create:true},onDirectory,onError);
-  // Create the lock file, if and only if it doesn't exist.	
-  fileSystem.root.getFile(src, {create: true, exclusive: false}, onFileEntry, onError);  
-  }
-   
-  function onFileEntry(fileEntry) {
-    console.log("onFileEntry()");
-  }
-   
-  function onDirectory(d) {
-    console.log("onDirectory()");
-    directory = d;
-    var reader = d.createReader();
-    reader.readEntries(onDirectoryRead,onError);
-  }
-   
-  // Helpful if you want to see if a recording exists 
-  function onDirectoryRead(entries) {
-    //console.log("The dir has "+entries.length+" entries.");
-    // Scan for audio src
-    for (var i=0; i<entries.length; i++) {
-      //console.log(entries[i].name+' dir? '+entries[i].isDirectory);
-      if(entries[i].name == src) {
-	console.log("file found");
-       }
-    }
-  }
-   
-  function onSuccess() {
-    console.log("onSuccess()");
-  }
-   
-  function onError(error) {
-    alert('onError(): '    + error.code    + '\n' + 
-    'message: ' + error.message + '\n');
-  }
-  
+        // onError Callback 
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' + 
+                  'message: ' + error.message + '\n');
+        }
 
-  /*
-  function systemCheck(){
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia({audio: true}, onSuccess, onFail);
-      $('#allowHint').modal('show');
-      //console.log("onload success!");
-    } else {
-      //toggleMainContainer();
-      $('#systemCheckModal').modal('show');
-    }    
-  }*/
+        // Set audio position
+        // 
+        function setAudioPosition(position) {
+            document.getElementById('audio_position').innerHTML = position;
+        }
 
-
-  function startRecording() {
-    //alert("recordAudio()"); 
-    console.log(" -- media="+mediaRec);
-    //alert(mediaRec);
-    if (mediaRec == null) {
-        //alert("start ini");
-	console.log(src);
-	mediaRec = new Media(src,
-			function() {
-			        //alert("success");
-				console.log("recordAudio():Audio Success"); 
-			}, 
-			function(err) {
-			        //alert("failed");
-				console.log("recordAudio():Audio Error: "+err); 
-				setAudioStatus("Error: " + err); 
-			}, 
-			function(status) { 
-				//alert("recordAudio():Audio Status: "+status);
-				console.log("recordAudio():Audio Status: "+status); 
-				setAudioStatus(Media.MEDIA_MSG[status]); 
-			} 
-		);
-	
-    } 
-    
-    //navigator.notification.beep(1); 
-    mediaRec.startRecord(); 
-    //alert("Start Record ");
-    //recorder.record();
-    
-  }
-
-  function stopRecording() {
-    mediaRec.stopRecord(); 
-    console.log("recordAudio(): stop"); 
-    //navigator.notification.beep(1);       
-    mediaRec.play();
-    //alert("stop");
-    /*recorder.stop();
-    recorder.exportWAV(function(s) {
-	    //console.log(s);
-	    audio.src = window.URL.createObjectURL(s);
-	    audio.pause();
-    });*/
-  }
-
-    function sendAudio(){
-
-    } 
-  
-  
-function toggleRecordButton() {
-	var ele = document.getElementById("recordButton");
-	var sub = document.getElementById("submitDiv");
-	var rec = document.getElementById("recordDiv");
-	var time = 0;
-	//var sub = document.getElementById("addToSubmitButton");
-	if(ele.firstChild.data == "Record") {
-	  const TimeOut=90;
-	  startRecording();
-	  ele.firstChild.data = "Stop ( "+TimeOut+" Seconds )";
-	  intervalId = window.setInterval(function()
-	  {
-	      time += 1;
-	      if (time>TimeOut) {
-		stopRecording();
-		alert("start2");
-		ele.firstChild.data = "Record";
-		rec.style.display="none";
-		sub.style.display="block";//code
-		window.clearInterval(intervalId);
-	      }else{ 
-	        ele.firstChild.data = "Stop ( " + (TimeOut-time) +" Seconds )";
-	      }
-	  }, 1000);
-	  
-  	}
-	/*else if(ele.value == "Stop"){
-		ele.value = "Cancel";
-		sub.style.display = "block";
-	}*/
-	else{
-		window.clearInterval(intervalId);
-	        stopRecording();
-		ele.firstChild.data = "Record";
-		rec.style.display="none";
-		sub.style.display="block";
-		//sub.style.display = "none";
-	}
-}
-function tryaginButton() {
-  var ele = document.getElementById("recordButton");
-  var sub = document.getElementById("submitDiv");
-  var rec = document.getElementById("recordDiv");
-  sub.style.display="none";
-  rec.style.display="block";
-  recorder.clear();
-  
-}
-
-function submit(){
-  sendAudio();
-  bootstrap_alert = function() {}
-  bootstrap_alert.warning = function(message) {
-	      $('#alert_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">?</a><span>'+message+'</span></div>')
-	  }
-  toggleMainContainer();
-  $('#submitConfirm').modal('show');
-  
-  //bootstrap_alert.warning('The recording has been sent to your teacher!');
-  //alert("The recording has been sent to your teacher!");
-  //window.location="../index.html";
-}
-
-
-
-</script> 
-
-    </td>
-    </tr> 
-</table>
-</div>
-
-</body>
-</html>
+        </script>
+      </head>
+      <body>
+        <a href="#" class="btn large" onclick="playAudio('http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3');">Play Audio</a>
+        <a href="#" class="btn large" onclick="pauseAudio();">Pause Playing Audio</a>
+        <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
+        <p id="audio_position"></p>
+      </body>
+    </html>
