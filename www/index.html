@@ -1,92 +1,45 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<!DOCTYPE html> 
-<html> 
-<head> 
-<title>Capture Video</title> 
-<link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet">
-<script src="http://vjs.zencdn.net/4.1/video.js"></script>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script> 
-<script type="text/javascript" charset="utf-8"> 
-
-// Upload files to server
-        function uploadFile(mediaFile) {
-            var ft = new FileTransfer(),
-            path = mediaFile.fullPath,
-            name = mediaFile.name;
-            alert('begin upload');
-            ft.upload(path,
-                      "http://insys.vmhost.psu.edu/~jxl1089/SignMark/videoupload.php",
-                      function(result) {
-                      console.log('Upload success: ' + result.responseCode);
-                      console.log(result.bytesSent + ' bytes sent');
-                      alert('path:'+ path + ' | name:'+ name + ' | bytes sent:' + result.bytesSent);
-                      },
-                      function(error) {
-                      console.log('Error uploading file ' + path + ': ' + error.code);
-                      },
-                      { fileName: name });
-        }
-
-// Called when capture operation is finished 
-// 
-function captureSuccess(mediaFiles) { 
-var i, len;
-            for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-                uploadFile(mediaFiles[i]);
-            }
-alert('Uploaded successfully!'); 
-} 
-
-// Called if something bad happens. 
-// 
-function captureError(error) { 
-var msg = 'Sorry. Did not get the video. Code: ' + error.code; 
-navigator.notification.alert(msg, null, 'Uh oh!'); 
-} 
-
-// A button will call this function 
-// 
-function captureVideo() { 
-// Launch device video recording application, 
-// allowing user to capture up to 2 video clips 
-navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 2}); 
-} 
-
-</script> 
-</head> 
-<body> 
-<p>AvenueDhh Html5 Version 1.2.2</p>
-<p>
-    <img src = "img/logo.png"
-         alt = "wordMark" />
-  </p>
-<button onclick="captureVideo();">Click to Record ASL</button> <br>
-
-<video id="my_video_1" class="video-js vjs-default-skin" controls
- preload="auto" width="640" height="264" poster="my_video_poster.png"
- data-setup="{}">
-  <source src="http://insys.vmhost.psu.edu/~jxl1089/SignMark/video/uploadvideo.mp4" type='video/mp4'>
- <!--<source src="http://insys.vmhost.psu.edu/~jxl1089/video/gizmo.mp4" type='video/mp4'>
- <source src="http://insys.vmhost.psu.edu/~jxl1089/video/gizmo.webmhd.webm" type='video/webm'>-->
-</video>
-
-</body> 
-</html> 
+<body>
+<table width="493" height="206" border="0" align="center">
+  <tr>
+    <td height="86" colspan="5" bgcolor="#FBD8C9" style="text-align: center"><p>Avenue Dhh</p>
+    <p>Real Time Reading </p></td>
+  </tr>
+  <tr>
+    <td width="14%" height="33" bgcolor="#A3D4FA">&nbsp;</td>
+    <td width="20%" bgcolor="#A3D4FA" style="text-align: right">User Name</td>
+    <td height="33" colspan="2" bgcolor="#A3D4FA" style="text-align: left">
+      <input type="text" name="textfield" id="textfield">
+      <span style="text-align: left"></span> <span style="text-align: left"></span></td>
+    <td width="15%" height="33" bgcolor="#A3D4FA">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#A3D4FA">&nbsp;</td>
+    <td height="30" bgcolor="#A3D4FA" style="text-align: right">Password</td>
+    <td height="30" colspan="2" bgcolor="#A3D4FA" style="text-align: left">
+      <span style="text-align: left"></span>
+      <input type="text" name="textfield2" id="textfield2">
+    </td>
+    <td height="30" bgcolor="#A3D4FA">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="47" bgcolor="#FBD8C9">&nbsp;</td>
+    <td colspan="2" bgcolor="#FBD8C9"><span style="text-align: center">
+      <input type="button" name="Sign in2" id="Sign in2" value="Sign in (Student)"  onClick="javascript:window.location='Student/Read.php'" >
+    </span></td>
+    <td width="28%" bgcolor="#FBD8C9"><span style="text-align: center">
+      <input type="button" name="Sign in" id="Sign in" value="Sign in (Teacher)"  onClick="javascript:window.location='Teacher/SystemCheck.php'" >
+    </span></td>
+    <td bgcolor="#FBD8C9">&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

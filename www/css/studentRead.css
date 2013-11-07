@@ -1,0 +1,159 @@
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 500;
+  background-color: #FFFFFF;
+  opacity: 0;
+}
+.modal-backdrop.fade {
+  opacity: 0;
+}
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+
+
+
+.modal {
+  font-family: Loved by the King, "Comic Sans MS", sans-serif !important;
+  font-size: 20px;
+  text-align:center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 33333;
+  overflow: auto;
+  width: 600px;
+  margin: -200px 0 0 -300px;
+  background-color: #ffffff;
+  display:none;
+
+/*IE 9*/
+	box-shadow: 5px 5px 5px 0px lightgray;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=130, Color='#cecece')",
+	"progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=-130, Color='#cecece')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=130, Color='#cecece'),
+	 progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=-130, Color='#cecece');
+	 
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  
+  
+}
+
+.modal-header {	
+  padding: 0px 20px 0px 20px;
+}
+
+.modal-body {
+	font-family: 'Loved by the King', 'Comic Sans MS', sans-serif !important;
+	font-size: 18px;
+	overflow-y: auto;
+	max-height: 400px;
+	margin-top: 20px;
+}
+.modal-correct, .modal-incorrect, .modal-score {	
+  display:inline-block; 
+  padding: 0px 20px 0px 20px;
+  font-size:18px;
+  width: 73px;
+  height: 10px;
+  text-align:center;
+  
+}
+
+.modal-correct-i {	
+  display:inline-block; 
+  padding: 0px 10px 0px 10px;
+  background-image:url(images/scoreBkgrnd_green.png);
+  background-repeat:no-repeat;
+  background-position:top;
+  width: 80px;
+  height: 67px;
+  color:#FFF;
+}
+.modal-incorrect-i {	
+  display:inline-block; 
+  padding: 0px 10px 0px 10px;
+  background-image:url(images/scoreBkgrnd_red.png);
+  background-repeat:no-repeat;
+  background-position:center;
+  width: 73px;
+  height: 67px;
+  color:#FFF;
+}
+
+.modal-score-i {	
+  display:inline-block;
+  padding: 0px 10px 0px 10px; 
+  background-image:url(images/scoreBkgrnd_grey.png);
+  background-repeat:no-repeat;
+  background-position:center;
+  width: 73px;
+  height: 67px;
+  color:#FFF;
+}
+
+.modal-form {
+  margin-bottom: 0;
+}
+.modal-footer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff;
+  -moz-box-shadow: inset 0 1px 0 #ffffff;
+  box-shadow: inset 0 1px 0 #ffffff;
+  *zoom: 1;
+  padding: 0px 10px 0px 10px;
+}
+.modal-footer:before,
+.modal-footer:after {
+  display: table;
+  content: "";
+}
+.modal-footer:after {
+  clear: both;
+}
+.modal-footer .btn + .btn {
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+
+.close, .close-modal {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+.close:hover, .close-modal:hover {
+  color: #000000;
+  text-decoration: none;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  cursor: pointer;
+}
