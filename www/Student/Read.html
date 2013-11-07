@@ -178,7 +178,8 @@ function toggleMainContainer() {
   function startRecording() {
     //alert("recordAudio()"); 
     //console.log(" -- media="+mediaRec); 
-    if (mediaRec == null) { 
+    if (mediaRec == null) {
+        alert("start ini");
 	var src = "myrecording.mp3"; 
 	mediaRec = new Media(src, 
 			function() { 
