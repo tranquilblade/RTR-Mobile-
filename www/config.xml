@@ -6,7 +6,7 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.0">
 
-    <name>Avenue Real Tiem Reading</name>
+    <name>Avenue Real Time Reading</name>
 
     <description>
         This is the student-side Real Time Reading module for AvenueDhh (Audio-Visual Educational Environment for Deaf or Hard of Hearing) Project.
