@@ -14,7 +14,8 @@
         // Cordova is ready
         //
         function onDeviceReady() {
-            playAudio("test.mp3");
+          console.log("ready");
+          playAudio("test.mp3");
         }
 
         // Audio player
@@ -27,7 +28,7 @@
         function playAudio(src) {
             // Create Media object from src
             my_media = new Media(src, onSuccess, onError);
-
+          console.log("ready to go!");
             // Play audio
             my_media.play();
 
