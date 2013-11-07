@@ -226,24 +226,24 @@ function toggleMainContainer() {
 
   function startRecording() {
     //alert("recordAudio()"); 
-    //console.log(" -- media="+mediaRec);
+    console.log(" -- media="+mediaRec);
     //alert(mediaRec);
     if (mediaRec == null) {
         //alert("start ini");
-	alert(directory.fullPath+"/"+src);
+	console.log(directory.fullPath+"/"+src);
 	mediaRec = new Media(directory.fullPath+"/"+src,
 			function() {
-			        alert("success");
-				//console.log("recordAudio():Audio Success"); 
+			        //alert("success");
+				console.log("recordAudio():Audio Success"); 
 			}, 
 			function(err) {
-			        alert("failed");
-				//console.log("recordAudio():Audio Error: "+err); 
+			        //alert("failed");
+				console.log("recordAudio():Audio Error: "+err); 
 				setAudioStatus("Error: " + err); 
 			}, 
 			function(status) { 
-				alert("recordAudio():Audio Status: "+status);
-				//console.log("recordAudio():Audio Status: "+status); 
+				//alert("recordAudio():Audio Status: "+status);
+				console.log("recordAudio():Audio Status: "+status); 
 				setAudioStatus(Media.MEDIA_MSG[status]); 
 			} 
 		);
@@ -252,7 +252,7 @@ function toggleMainContainer() {
     
     //navigator.notification.beep(1); 
     mediaRec.startRecord(); 
-    alert("Start Record ");
+    //alert("Start Record ");
     //recorder.record();
     
   }
